@@ -1,0 +1,16 @@
+{
+  "name": "simple-hashset",
+  "description": "Simple hashsets for node",
+  "version": "0.0.0",
+  "main": "./lib/set",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leafty/node-set.git"
+  },
+  "keywords": [
+    "hashset",
+    "set"
+  ],
+  "author": "Johann-Michael Thiebaut <johann.thiebaut@gmail.com>",
+  "license": "MIT"
+}
