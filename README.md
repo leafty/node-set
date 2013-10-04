@@ -93,13 +93,37 @@ Returns a **new** set containing the elements that are in either `this`
 or `that` but not in both.
 This is the symmetric difference of sets.
 
+### Set#subset(that)
+
+Returns true iff `this` is a subset of `that`
+
+### Set#strictSubset(that)
+
+Returns true iff `this` is a strict subset of `that`
+
+### Set#superset(that)
+
+Returns true iff `this` is a superset of `that`
+
+### Set#strictSuperset(that)
+
+Returns true iff `this` is a strict superset of `that`
+
+### Set#equal(that)
+
+Returns true iff `this` is equal to `that`
+
 ### Set#map(f)
 
 Returns a new set containing elements mapped by `f`.
 
 ```js
-var a = new Set(2, 5);                     // a = { 2, 5 }
-var b = a.map(function(x) { return x+1 }); // b = { 3, 6 }
+var a = new Set(2, 5); // a = { 2, 5 }
+var f = function(x) {
+  var y = parseInt(x);
+  return y+1;
+};
+var b = a.map(f);      // b = { 3, 6 }
 ```
 
 ### Set#flatMap(f)
@@ -109,7 +133,8 @@ Like map but `f` returns sets.
 ```js
 var a = new Set(2, 5);    // a = { 2, 5 }
 var f = function(x) {
-  return new Set(x, x+3);
+  var y = parseInt(x);
+  return new Set(y, y+3);
 };
 var b = a.flatMap(f);     // b = { 2, 5, 8 }
 ```

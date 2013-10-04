@@ -82,14 +82,96 @@ describe('Set', function() {
       should.strictEqual(s.contains('c'), false);
     })
   });
-  describe('#equals(that)', function() {
-    it('should return tru iff the sets are equal.', function() {
+  describe('#toArray()', function() {
+    it('should return an array of the elements in the set.', function() {
+      var s = new Set('a', 'c');
+      var err = 0;
+      // Either one should be true
+      try {
+        should.deepEqual(s.toArray(), ['a', 'c']);
+      } catch (e) {
+          err++;
+      }
+      try {
+        should.deepEqual(s.toArray(), ['c', 'a']);
+      } catch (e) {
+          err++;
+      }
+      if (err !== 1) {
+        should.deepEqual(s.toArray(), ['a', 'c']);
+      }
+    })
+  });
+  describe('#union(that)', function() {
+    it('should return the union of the sets.', function() {
+      var r = new Set('a', 'c');
+      var s = new Set('a', 'b');
+      var t = new Set('a', 'b', 'c');
+      should.strictEqual(t.equal(r.union(s)), true);
+    })
+  });
+  describe('#diff(that)', function() {
+    it('should return the set difference of the sets.', function() {
+      var r = new Set('a', 'b', 'c');
+      var s = new Set('a', 'b');
+      var t = new Set('c');
+      should.strictEqual(t.equal(r.diff(s)), true);
+    })
+  });
+  describe('#intersect(that)', function() {
+    it('should return the intersection of the sets.', function() {
+      var r = new Set('a', 'b', 'c');
+      var s = new Set('b', 'c', 'd');
+      var t = new Set('b', 'c');
+      should.strictEqual(t.equal(r.intersect(s)), true);
+    })
+  });
+  describe('#delta(that)', function() {
+    it('should return the symmetric difference of the sets.', function() {
+      var r = new Set('a', 'b', 'c');
+      var s = new Set('b', 'c', 'd');
+      var t = new Set('a', 'd');
+      should.strictEqual(t.equal(r.delta(s)), true);
+    })
+  });
+  describe('#subset(that)', function() {
+    it('should return true iff this is a subset of that')
+  });
+  describe('#strictSubset(that)', function() {
+    it('should return true iff this is a strict subset of that')
+  });
+  describe('#superset(that)', function() {
+    it('should return true iff this is a superset of that')
+  });
+  describe('#strictSuperset(that)', function() {
+    it('should return true iff this is a strict superset of that')
+  });
+  describe('#equal(that)', function() {
+    it('should return true iff the sets are equal.', function() {
       var r = new Set('a', 'c');
       var s = new Set('a', 'c');
       var t = new Set('a', 'b', 'c');
-      should.strictEqual(r.equals(s), true);
-      should.strictEqual(r.equals(t), false);
-      should.strictEqual(s.equals(t), false);
+      should.strictEqual(r.equal(s), true);
+      should.strictEqual(r.equal(t), false);
+      should.strictEqual(s.equal(t), false);
+    })
+  });
+  describe('#map(f)', function() {
+    it('should return the set of elements mapped by f.', function() {
+      var r = new Set('a', 'c');
+      var s = r.map(function(x) { return x + '!' });
+      var t = new Set('a!', 'c!');
+      should.strictEqual(s.equal(t), true);
+    })
+  });
+  describe('#flatMap(f)', function() {
+    it('should return the set of elements flat mapped by f.', function() {
+      var r = new Set('a', 'ab');
+      var s = r.flatMap(function(x) {
+        return new Set(x, x + 'b');
+      });
+      var t = new Set('a', 'ab', 'abb');
+      should.strictEqual(s.equal(t), true);
     })
   });
 })
