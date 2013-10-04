@@ -95,23 +95,23 @@ This is the symmetric difference of sets.
 
 ### Set#subset(that)
 
-Returns true iff `this` is a subset of `that`
+Returns true iff `this` is a subset of `that`.
 
 ### Set#strictSubset(that)
 
-Returns true iff `this` is a strict subset of `that`
+Returns true iff `this` is a strict subset of `that`.
 
 ### Set#superset(that)
 
-Returns true iff `this` is a superset of `that`
+Returns true iff `this` is a superset of `that`.
 
 ### Set#strictSuperset(that)
 
-Returns true iff `this` is a strict superset of `that`
+Returns true iff `this` is a strict superset of `that`.
 
 ### Set#equal(that)
 
-Returns true iff `this` is equal to `that`
+Returns true iff `this` is equal to `that`.
 
 ### Set#map(f)
 
